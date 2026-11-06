@@ -1,0 +1,18 @@
+{
+  "pipeline": "SelectKBest(20) -> StandardScaler; top-8 features -> 2-regime Kalman bank (hand-set) -> causal smoothing -> [rf, diff, smooth] -> RandomForest",
+  "rf": {
+    "n_estimators": 100,
+    "max_depth": 20,
+    "min_samples_split": 5,
+    "class_weight": "balanced"
+  },
+  "oversampling": "minority upsampled to majority, train only",
+  "sampling": "systematic 1-in-47 of the ordered stream after within-file de-duplication",
+  "split": "chronological 60/20/20 per capture group, 20-row embargo",
+  "ssm_state": "fresh filter state at the start of every segment / upload",
+  "versions": {
+    "sklearn": "1.7.2",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  }
+}
