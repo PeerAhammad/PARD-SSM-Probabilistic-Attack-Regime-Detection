@@ -50,6 +50,10 @@ app.add_middleware(
     allow_methods=["GET", "POST"], allow_headers=["*"],
 )
 
+@app.get("/")
+def root():
+    return {"service": "PARD-SSM Explorer API", "health": "/api/health", "docs": "/docs"}
+
 
 def get_model(key):
     if key not in NAMES:
